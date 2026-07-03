@@ -11,6 +11,7 @@ import User from "./models/user.model.js";
 import job from "./lib/cron.js";
 
 import clerkWebHook from "./webhooks/clerk.webhook.js";
+import authRouter from "./routes/auth.route.js";
 const app = express();
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -30,6 +31,8 @@ app.use(clerkMiddleware());
 app.get("/health", (req, res) => {
   res.status(200).json({ ok: true });
 });
+
+app.use("/api/auth", authRouter);
 
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
