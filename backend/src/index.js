@@ -12,6 +12,7 @@ import job from "./lib/cron.js";
 
 import clerkWebHook from "./webhooks/clerk.webhook.js";
 import authRouter from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 const app = express();
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -33,6 +34,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/messages", messageRoutes);
 
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
