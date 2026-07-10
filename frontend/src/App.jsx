@@ -3,12 +3,12 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { Navigate, Route, Routes } from "react-router";
 import ChatPage from "./pages/ChatPage";
 import AuthPage from "./pages/AuthPage";
+import PageLoader from "./components/PageLoader";
 import { useAuth } from "@clerk/react";
 
 function App() {
   const { isSignedIn, isLoaded } = useAuth();
-  // TODO implement it
-  if (!isLoaded) return <p>laoding...</p>;
+  if (!isLoaded) return <PageLoader />;
   return (
     <ThemeProvider>
       <WallpaperProvider>
