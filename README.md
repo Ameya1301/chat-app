@@ -172,10 +172,3 @@ npm run dev
 ```
 
 Frontend runs at `http://localhost:5173`, backend at `http://localhost:3000`.
-
-### Run with Docker
-
-```bash
-docker build -t justchat .
-docker run -p 3001:3001 --env-file backend/.env justchat
-```
