@@ -1,9 +1,9 @@
-import toast from "react-hot-toast";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+
 import { axiosInstance } from "../lib/axios";
 import { useAuthStore } from "./useAuthStore";
-import { io } from "socket.io-client";
+import toast from "react-hot-toast";
 
 export const useChatStore = create(
   persist(
@@ -40,6 +40,7 @@ export const useChatStore = create(
           set({ isUsersLoading: false });
         }
       },
+
       getConversations: async () => {
         set({ isConversationsLoading: true });
         try {
@@ -51,6 +52,7 @@ export const useChatStore = create(
           set({ isConversationsLoading: false });
         }
       },
+
       getMessages: async (userId) => {
         if (!userId) return;
         set({ isMessagesLoading: true });
@@ -65,6 +67,7 @@ export const useChatStore = create(
           set({ isMessagesLoading: false });
         }
       },
+
       sendMessage: async (messageData) => {
         const { selectedUser, messages } = get();
         if (!selectedUser) return false;
@@ -84,6 +87,7 @@ export const useChatStore = create(
           return false;
         }
       },
+
       subscribeToMessages: (userId) => {
         if (!userId) return;
 
@@ -100,10 +104,12 @@ export const useChatStore = create(
           get().getConversations();
         });
       },
+
       unsubscribeFromMessages: () => {
         const socket = useAuthStore.getState().socket;
         socket?.off("newMessage");
       },
+
       setSelectedUser: (selectedUser) => set({ selectedUser }),
 
       setActiveConversationId: (activeConversationId) => {
@@ -118,16 +124,19 @@ export const useChatStore = create(
           messages: activeConversationId ? state.messages : [],
         }));
       },
+
       setSearchQuery: (searchQuery) => set({ searchQuery }),
       setSidebarTab: (sidebarTab) => set({ sidebarTab }),
       setComposerText: (composerText) => set({ composerText }),
       setSoundEnabled: (isSoundEnabled) => set({ isSoundEnabled }),
+
       sendTextMessage: async (conversationId) => {
         const messageText = get().composerText.trim();
         if (!conversationId || !messageText) return false;
 
         return get().sendMessage({ text: messageText });
       },
+
       sendMediaMessage: async ({ conversationId, file }) => {
         if (!conversationId || !file) return false;
 

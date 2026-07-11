@@ -1,14 +1,7 @@
 import { useClerk } from "@clerk/react";
 import { Button } from "@heroui/react";
-import {
-  ArrowRightIcon,
-  ImageIcon,
-  ShieldCheckIcon,
-  SmileIcon,
-  SparklesIcon,
-  ZapIcon,
-} from "lucide-react";
-import { APP_NAME, AppLogo } from "../AppLogo";
+import { ArrowRightIcon, ShieldCheckIcon, SparklesIcon } from "lucide-react";
+import { AppLogo } from "../AppLogo";
 import { AuthCardShell } from "./AuthCardShell";
 
 const AFTER_AUTH = "/";
@@ -27,19 +20,13 @@ const continueButtonClassName = [
   "dark:after:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]",
 ].join(" ");
 
-const features = [
-  { icon: ZapIcon, label: "Real-time" },
-  { icon: ImageIcon, label: "Media sharing" },
-  { icon: SmileIcon, label: "Reactions" },
-];
-
 export function AuthActionPanel() {
   const clerk = useClerk();
 
   return (
     <section className="relative flex flex-1 flex-col items-stretch justify-center overflow-hidden px-5 py-12 sm:px-10 md:px-14 md:py-10 lg:px-16">
       <AuthCardShell>
-        <div className="mb-7 flex flex-col items-center text-center">
+        <div className="mb-8 flex flex-col items-center text-center">
           <div className="relative mb-5">
             <div
               aria-hidden
@@ -50,55 +37,38 @@ export function AuthActionPanel() {
             </div>
           </div>
 
-          <div className="mb-3 flex items-center justify-center gap-1.5 text-accent">
+          <div className="flex items-center justify-center gap-1.5 text-accent">
             <SparklesIcon className="size-3.5" strokeWidth={2} aria-hidden />
             <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">
-              {APP_NAME}
+              Secure entry
             </span>
           </div>
-
-          <h1 className="mb-1.5 text-[1.3rem] font-bold tracking-tight text-zinc-900 dark:text-white">
-            Welcome back
-          </h1>
-          <p className="text-[13px] leading-relaxed text-[#8E8E93] dark:text-[#98989D]">
-            Sign in to continue chatting in real time
-          </p>
         </div>
 
-        <div className="mb-7 flex flex-wrap items-center justify-center gap-2">
-          {features.map(({ icon: Icon, label }) => (
-            <div
-              key={label}
-              className="flex items-center gap-1.5 rounded-full border border-black/8 bg-zinc-50 px-3 py-1.5 text-[11.5px] font-medium text-zinc-600 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400"
-            >
-              <Icon className="size-3 text-accent" strokeWidth={2.5} aria-hidden />
-              {label}
-            </div>
-          ))}
-        </div>
+        {
+          <Button
+            fullWidth
+            size="lg"
+            variant="primary"
+            className={continueButtonClassName}
+            onPress={() => {
+              clerk.openSignIn({
+                fallbackRedirectUrl: AFTER_AUTH,
+                forceRedirectUrl: AFTER_AUTH,
+              });
+            }}
+          >
+            <span className="relative z-1 flex items-center justify-center gap-2">
+              Continue
+              <ArrowRightIcon
+                className="size-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            </span>
+          </Button>
+        }
 
-        <Button
-          fullWidth
-          size="lg"
-          variant="primary"
-          className={continueButtonClassName}
-          onPress={() => {
-            clerk.openSignIn({
-              fallbackRedirectUrl: AFTER_AUTH,
-              forceRedirectUrl: AFTER_AUTH,
-            });
-          }}
-        >
-          <span className="relative z-1 flex items-center justify-center gap-2">
-            Sign in to continue
-            <ArrowRightIcon
-              className="size-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden
-            />
-          </span>
-        </Button>
-
-        <div className="mt-7 flex items-center justify-center gap-2 border-t border-black/6 pt-5 text-[11px] text-[#8E8E93] dark:border-white/8 dark:text-[#636366]">
+        <div className="mt-8 flex items-center justify-center gap-2 border-t border-black/6 pt-6 text-[11px] text-[#8E8E93] dark:border-white/8 dark:text-[#636366]">
           <ShieldCheckIcon
             className="size-3.5 shrink-0 text-[#34C759] dark:text-[#30D158]"
             strokeWidth={2}

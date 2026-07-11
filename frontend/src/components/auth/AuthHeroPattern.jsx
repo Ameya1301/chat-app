@@ -38,26 +38,6 @@ export function AuthHeroPattern() {
           maskImage: darkGridMask,
         }}
       />
-
-      {/* Floating orbs — light mode */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[8%] top-[18%] size-28 rounded-full bg-accent/10 blur-3xl animate-[auth-float-y_5s_ease-in-out_infinite] motion-reduce:animate-none dark:hidden"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[12%] bottom-[22%] size-20 rounded-full bg-[#5E5CE6]/10 blur-3xl animate-[auth-float-y_7s_ease-in-out_1.5s_infinite] motion-reduce:animate-none dark:hidden"
-      />
-
-      {/* Floating orbs — dark mode */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[12%] top-[15%] hidden size-32 rounded-full bg-accent/20 blur-3xl animate-[auth-float-y_5s_ease-in-out_infinite] motion-reduce:animate-none dark:block"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[8%] bottom-[20%] hidden size-24 rounded-full bg-[#5E5CE6]/22 blur-3xl animate-[auth-float-y_6.5s_ease-in-out_1s_infinite] motion-reduce:animate-none dark:block"
-      />
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { ImageIcon, MessageCircleIcon, SmileIcon } from "lucide-react";
 import { APP_NAME } from "../AppLogo";
 import { AuthHeroPattern } from "./AuthHeroPattern";
 
@@ -10,17 +9,11 @@ const heroPanelClassName = [
 ].join(" ");
 
 const heroImageClassName = [
-  "h-auto max-h-[min(40vh,340px)] w-[min(92%,17rem)]",
+  "h-auto max-h-[min(44vh,380px)] w-[min(92%,19rem)]",
   "animate-[auth-float-y_4.5s_ease-in-out_infinite]",
   "object-contain object-center select-none motion-reduce:animate-none",
-  "sm:w-[min(88%,19rem)] md:max-h-[min(46vh,380px)] md:w-[min(90%,20rem)]",
+  "sm:w-[min(88%,21rem)] md:max-h-[min(52vh,440px)] md:w-[min(90%,22rem)]",
 ].join(" ");
-
-const features = [
-  { icon: MessageCircleIcon, text: "Instant messaging" },
-  { icon: ImageIcon, text: "Photo & video sharing" },
-  { icon: SmileIcon, text: "Emoji reactions" },
-];
 
 export function AuthHeroPanel() {
   return (
@@ -30,7 +23,7 @@ export function AuthHeroPanel() {
       <div className="relative z-1 flex flex-1 flex-col px-6 pb-6 pt-8 md:px-8 md:pb-8 md:pt-10">
         <div className="text-center md:text-left">
           <p className="mb-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-zinc-500 dark:text-[#636366]">
-            Real-time chat
+            Secure gateway
           </p>
           <h2 className="text-balance font-mono text-[1.15rem] font-semibold uppercase leading-snug tracking-[0.06em] text-zinc-900 dark:text-white sm:text-[1.25rem]">
             Open {APP_NAME}
@@ -39,25 +32,9 @@ export function AuthHeroPanel() {
             Chats, photos, and reactions stay in sync—sign in on the right to
             continue.
           </p>
-
-          <ul className="mx-auto mt-4 hidden max-w-[22rem] flex-col gap-2.5 sm:flex md:mx-0 md:max-w-none">
-            {features.map(({ icon: Icon, text }) => (
-              <li
-                key={text}
-                className="flex items-center justify-center gap-2.5 md:justify-start"
-              >
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/15 dark:bg-accent/20">
-                  <Icon className="size-3 text-accent" strokeWidth={2.5} aria-hidden />
-                </span>
-                <span className="font-mono text-[11px] font-medium text-zinc-600 dark:text-[#98989D]">
-                  {text}
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
 
-        <div className="flex flex-1 items-center justify-center py-4 md:py-3">
+        <div className="flex flex-1 items-center justify-center py-6 md:py-4">
           <img
             src="/auth.png"
             alt=""

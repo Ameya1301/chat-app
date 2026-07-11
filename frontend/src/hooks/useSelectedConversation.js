@@ -3,6 +3,7 @@ import { formatMessageTime } from "../lib/utils";
 import { useChatStore } from "../store/useChatStore";
 import { useAuthStore } from "../store/useAuthStore";
 
+// John Doe -> JD
 export function getInitials(name) {
   return name
     .split(" ")
@@ -10,6 +11,12 @@ export function getInitials(name) {
     .map((namePart) => namePart[0])
     .join("");
 }
+
+// mapUserToConversation is an adapter — it converts the raw backend shapes (a user document + an array of message documents) into the clean view-model that the chat UI components expect to render.
+
+// Two transformations happen:
+// 1. Messages → UI messages
+// 2. User → peer
 
 function mapUserToConversation({ user, messages, authUser, onlineUsers }) {
   const mappedMessages = messages.map((message) => ({

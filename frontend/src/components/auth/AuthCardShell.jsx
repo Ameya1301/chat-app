@@ -22,11 +22,7 @@ export function AuthCardShell({ children }) {
         <div className={cardClassName}>
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-24 top-0 size-56 rounded-full bg-accent/12 blur-3xl dark:bg-accent/18 animate-[auth-pulse-glow_7s_ease-in-out_infinite] motion-reduce:animate-none"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-16 bottom-0 size-40 rounded-full bg-[#5E5CE6]/8 blur-3xl dark:bg-[#5E5CE6]/14 animate-[auth-pulse-glow_9s_ease-in-out_2.5s_infinite] motion-reduce:animate-none"
+            className="pointer-events-none absolute -right-24 top-0 size-56 rounded-full bg-accent/12 blur-3xl dark:bg-accent/18"
           />
           <div
             aria-hidden

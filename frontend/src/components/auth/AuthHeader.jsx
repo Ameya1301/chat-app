@@ -1,8 +1,8 @@
-import React from "react";
 import { APP_NAME, AppLogo } from "../AppLogo";
-import { WallpaperPicker } from "../WallpaperPicker";
 import { ThemePresetPicker } from "../ThemePresetPicker";
 import { ThemeToggle } from "../ThemeToggle";
+import { WallpaperPicker } from "../WallpaperPicker";
+
 function AuthHeader() {
   return (
     <header className="sticky top-0 z-10 flex shrink-0 items-center gap-2 border-b border-black/10 bg-[#F6F6F6]/95 px-3 py-2 backdrop-blur-md dark:border-white/10 dark:bg-[#1C1C1E]/95">
@@ -29,5 +29,4 @@ function AuthHeader() {
     </header>
   );
 }
-
 export default AuthHeader;
