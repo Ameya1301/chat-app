@@ -11,7 +11,8 @@ router.post("/", async (req, res) => {
       res.status(503).json({ message: "Webhook secret is not provided" });
       return;
     }
-    //   clerks verifier expects web req with the raw body, express raw gives a buffer
+
+    // clerk's verifier expects a Web Request with the raw body; express.raw gives a Buffer.
     const payload = Buffer.isBuffer(req.body)
       ? req.body.toString("utf8")
       : String(req.body);
@@ -21,11 +22,12 @@ router.post("/", async (req, res) => {
       body: payload,
     });
 
-    //   throws if the signaure is wrong or the body was tampered with, only then do we trust evt
+    // throws if the signature is wrong or the body was tampered with; only then do we trust evt.
     const evt = await verifyWebhook(request, { signingSecret });
 
     if (evt.type === "user.created" || evt.type === "user.updated") {
       const u = evt.data;
+
       const email =
         u.email_addresses?.find((e) => e.id === u.primary_email_address_id)
           ?.email_address ?? u.email_addresses?.[0]?.email_address;
@@ -41,13 +43,15 @@ router.post("/", async (req, res) => {
         { new: true, upsert: true, setDefaultsOnInsert: true },
       );
     }
+
     if (evt.type === "user.deleted") {
       if (evt.data.id) await User.findOneAndDelete({ clerkId: evt.data.id });
     }
+
     res.status(200).json({ received: true });
-  } catch (err) {
-    console.log("Error in Clerk webhook: ", err);
-    res.status(400).json({ message: "Error processing webhook event" });
+  } catch (error) {
+    console.error("Error in Clerk webhook:", error);
+    res.status(400).json({ message: "Webhook verification failed" });
   }
 });
 
